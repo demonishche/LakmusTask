@@ -6,7 +6,7 @@
   margin: 0;
 }
 
-.loading {
+.loading, .requestError {
   text-align: center;
   font-size: 20px;
 }

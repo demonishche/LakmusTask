@@ -17,12 +17,14 @@ class ClientsContainer extends React.Component {
   }
 
   render() {
-    return <Clients {...this.props}/>
+    console.log(this.props.error)
+    return <Clients error={this.props.error} {...this.props}/>
   }
 }
 
 const mapStateToProps = ({clients}) => ({
   clients: clients.clientsList,
+  requestError: clients.error,
   ...clients
 })
 

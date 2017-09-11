@@ -1,0 +1,9 @@
+.clientInfo {
+  padding: 0;
+  list-style: none;
+  font-size: 20px;
+}
+
+.clientInfoItem {
+  margin-bottom: 10px;
+}
