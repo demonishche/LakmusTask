@@ -1,10 +1,11 @@
 import createReducer from '../createReducer'
+import {createGetUrl} from '../utils'
 
-const REQUEST_CLIENTS='REQUEST_CLIENTS'
-const SUCCESS_RECEIVED_CLIENTS='SUCCESS_RECEIVED_CLIENTS'
-const FAILURE_RECEIVED_CLIENTS='FAILURE_RECEIVED_CLIENTS'
-const CHANGE_CURRENT_PAGE='CHANGE_CURRENT_PAGE'
-const SET_NAME='SET_NAME'
+const REQUEST_CLIENTS = 'REQUEST_CLIENTS'
+const SUCCESS_RECEIVED_CLIENTS = 'SUCCESS_RECEIVED_CLIENTS'
+const FAILURE_RECEIVED_CLIENTS = 'FAILURE_RECEIVED_CLIENTS'
+const CHANGE_CURRENT_PAGE = 'CHANGE_CURRENT_PAGE'
+const SET_NAME = 'SET_NAME'
 
 export const receiveClients = (page) => (dispatch, getState) => {
   dispatch({type: REQUEST_CLIENTS})
@@ -13,9 +14,7 @@ export const receiveClients = (page) => (dispatch, getState) => {
   const name = getState().clients.name
   let header = new Headers()
   header.append('Content-Type', 'application/json')
-  let params = {name, '_start': (page - 1)*10, '_limit': 10}
-  let url = 'http://api.demo.lakmus.org/api/clients'
-  Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+  let url = createGetUrl('http://api.demo.lakmus.org/api/clients', {name, '_start': (page - 1) * 10, '_limit': 10})
   fetch(url, {
     method: 'GET',
     header
@@ -26,7 +25,7 @@ export const receiveClients = (page) => (dispatch, getState) => {
 }
 
 export const setName = ({name}) => dispatch => {
-  dispatch({type: SET_NAME, name})
+  dispatch({type: SET_NAME, name: name || ''})
   dispatch(receiveClients(1))
 }
 

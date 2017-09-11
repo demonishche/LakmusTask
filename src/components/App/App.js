@@ -1,6 +1,6 @@
 import React from 'react'
 import {Route} from 'react-router-dom'
-import Clients from '../Clients'
+import Clients from '../../containers/Clients'
 import Client from '../Client'
 import './App.css'
 
