@@ -21,7 +21,7 @@ export const receiveClients = (page) => (dispatch, getState) => {
   })
     .then(response => response.json())
     .then(data => dispatch({type: SUCCESS_RECEIVED_CLIENTS, clientsList: data}))
-    .catch(error => dispatch({type: FAILURE_RECEIVED_CLIENTS, error}))
+    .catch(error => dispatch({type: FAILURE_RECEIVED_CLIENTS, error: true}))
 }
 
 export const changeCurrentPage = (page) => ({type: CHANGE_CURRENT_PAGE, page})
@@ -36,11 +36,11 @@ const initialState = {
   clientsList: [],
   page: 1,
   name: '',
-  error: null
+  error: false
 }
 
 export const clients = createReducer(initialState, {
-  [REQUEST_CLIENTS]: (state, action) => ({isFetching: true, clientsList: []}),
+  [REQUEST_CLIENTS]: (state, action) => ({isFetching: true, clientsList: [], error: false}),
   [SUCCESS_RECEIVED_CLIENTS]: (state, {clientsList}) => ({clientsList, isFetching: false}),
   [FAILURE_RECEIVED_CLIENTS]: (state, {error}) => ({error, isFetching: false}),
   [SET_NAME]: (state, {name}) => ({name}),

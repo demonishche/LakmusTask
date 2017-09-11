@@ -3,7 +3,7 @@ import {Route, Link} from 'react-router-dom'
 import {Navbar, NavItem, Nav} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import Clients from '../../containers/Clients'
-import Client from '../Client'
+import Client from '../../containers/Client'
 import './App.css'
 
 const App = () => {
@@ -29,7 +29,7 @@ const App = () => {
       </Navbar>
       <Route exact path='/' component={Clients}/>
       <Route path='/clients/:page?' component={Clients}/>
-      <Route exact path='/client/:clientId?' component={Client}/>
+      <Route exact path='/client/:clientId' component={Client}/>
     </div>
   )
 }
