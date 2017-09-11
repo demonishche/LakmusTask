@@ -9,7 +9,7 @@ const SET_NAME = 'SET_NAME'
 
 export const receiveClients = (page) => (dispatch, getState) => {
   dispatch({type: REQUEST_CLIENTS})
-  dispatch({type: CHANGE_CURRENT_PAGE, page})
+  dispatch(changeCurrentPage(page))
 
   const name = getState().clients.name
   let header = new Headers()
@@ -23,6 +23,8 @@ export const receiveClients = (page) => (dispatch, getState) => {
     .then(data => dispatch({type: SUCCESS_RECEIVED_CLIENTS, clientsList: data}))
     .catch(error => dispatch({type: FAILURE_RECEIVED_CLIENTS, error}))
 }
+
+export const changeCurrentPage = (page) => ({type: CHANGE_CURRENT_PAGE, page})
 
 export const setName = ({name}) => dispatch => {
   dispatch({type: SET_NAME, name: name || ''})
