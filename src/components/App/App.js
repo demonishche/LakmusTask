@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route, Link} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import Clients from '../Clients'
 import Client from '../Client'
 import './App.css'
